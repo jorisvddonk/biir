@@ -57,7 +57,8 @@ biir.factory('freebaseService', function($http, $q){
             "mid": styleId
           }],
           "/common/topic/image": [{
-            "id": null
+            "id": null,
+            "optional": "optional"
           }]
         }
       ]);
