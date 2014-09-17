@@ -4,7 +4,7 @@
     <div class="panel panel-primary">
       <div class="panel-heading">Beer styles</div>
       <ul class="list-group">
-        <li class="list-group-item" ng-repeat="style in styles" ng-click="getBeers(style)">{{style.name}}<span class="badge" ng-if="getCountBeers(style)">{{getCountBeers(style)}}</span></li>
+        <a class="list-group-item" ng-repeat="style in styles" ng-click="getBeers(style)">{{style.name}}<span class="badge" ng-if="getCountBeers(style)">{{getCountBeers(style)}}</span></a>
       </ul>
     </div>
   </div>
