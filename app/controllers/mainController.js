@@ -6,6 +6,21 @@ biir.controller('mainController', function mainController($scope, freebaseServic
   $scope.getBeers = function(style) {
     freebaseService.getBeers(style.mid).then(function(data, metadata){
       $scope.beers = data.data;
+      freebaseService.getBeerDetails($scope.beers).then(function(data, metadata){
+        // merge with $scope.beers:
+        var newbeers = _.map($scope.beers, function(beer) {
+          // find beer in our new array
+          var detail = _.find(data.data, function(beerdetail) {
+            return beerdetail.mid == beer.mid;
+          });
+          if (detail !== undefined) {
+            return _.extend(beer, detail)
+          } else {
+            return beer;
+          }
+        });
+        $scope.beers = newbeers;
+      })
     });
   };
 

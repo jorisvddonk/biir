@@ -28,7 +28,7 @@ biir.factory('freebaseService', function($http, $q){
     },
 
     getSearch: function(filter) {
-      return this.getAPIResult(API_BASE_URL + "/search", {'filter': filter});
+      return this.getAPIResult(API_BASE_URL + "/search", {'filter': filter, 'output': "(description)"});
     },
 
     getByMQL: function(mqlquery) {
@@ -63,5 +63,13 @@ biir.factory('freebaseService', function($http, $q){
         }
       ]);
     },
+
+    getBeerDetails: function(beers) {
+      return this.getObjectsByMids(_.pluck(beers, 'mid'));
+    },
+
+    getObjectsByMids: function(mids) {
+      return this.getSearch("(any mid:" + mids.join(" mid:") + ")");
+    }
   };
 });
