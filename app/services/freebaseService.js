@@ -27,12 +27,33 @@ biir.factory('freebaseService', function($http, $q){
       return deferred.promise;
     },
 
+    getSearch: function(filter) {
+      return this.getAPIResult(API_BASE_URL + "/search", {'filter': filter});
+    },
+
+    getByMQL: function(mqlquery) {
+      return this.getAPIResult(API_BASE_URL + "/mqlread", {'query': JSON.stringify(mqlquery)});
+    },
+
     getStyles: function() {
-      return this.getAPIResult(API_BASE_URL + "/search", {filter: "(any type:/food/beer_style)"});
+      return this.getByMQL([{
+        "mid": null,
+        "name": null,
+        "type": "/food/beer_style"
+      }]);
     },
 
     getBeers: function(styleId) {
-      return this.getAPIResult(API_BASE_URL + "/search", {filter: "(any type:/food/beer)"});
+      return this.getByMQL([
+        {
+          "mid": null,
+          "name": null,
+          "type": "/food/beer",
+          "/food/beer/beer_style": [{
+            "mid": styleId
+          }]
+        }
+      ]);
     },
   };
 });
