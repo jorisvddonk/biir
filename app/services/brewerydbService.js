@@ -1,7 +1,6 @@
 biir.factory('brewerydbService', function($http, $q){
-  API_KEY = "ENTER_KEY_HERE";
-  //API_BASE_URL = "http://www.corsproxy.com/api.brewerydb.com/v2";
-  API_BASE_URL = "http://cors-anywhere.herokuapp.com/api.brewerydb.com/v2"
+  var API_KEY = "ENTER_KEY_HERE";
+  var API_BASE_URL = "http://cors-anywhere.herokuapp.com/api.brewerydb.com/v2"
   return {
     getAPIResult: function(url, params) {
       if (params == null) {
@@ -18,7 +17,7 @@ biir.factory('brewerydbService', function($http, $q){
         "params": params,
         "url": url
       }).success(function(data, status, headers, config) {
-          deferred.resolve(data);
+          deferred.resolve({"data": data.data, "metadata": data});
         }).
         error(function(data, status, headers, config) {
           deferred.reject(data);
@@ -33,7 +32,7 @@ biir.factory('brewerydbService', function($http, $q){
         "method": 'GET',
         "url": "app/cached" + fragment + ".json"
       }).success(function(data, status, headers, config) {
-          deferred.resolve(data);
+          deferred.resolve({"data": data.data, "metadata": data});
         }).
         error(function(data, status, headers, config) {
           deferred.reject(data);

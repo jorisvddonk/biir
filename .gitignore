@@ -1,1 +1,3 @@
 bower_components/
+app/cached/beers.json
+app/cached/styles.json
