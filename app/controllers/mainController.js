@@ -17,4 +17,15 @@ biir.controller('mainController', function mainController($scope, brewerydbServi
     }
   };
 
+  $scope.getBeerImage = function(beer) {
+    if (beer.hasOwnProperty("/common/topic/image")) {
+      if (Array.isArray(beer["/common/topic/image"]) && beer["/common/topic/image"].length > 0) {
+        var retval = "https://usercontent.googleapis.com/freebase/v1/image" + beer["/common/topic/image"][0].id;
+        return retval;
+      }
+    } else {
+      return beer.labels.icon;
+    }
+  };
+
 });

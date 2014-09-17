@@ -51,6 +51,9 @@ biir.factory('freebaseService', function($http, $q){
           "type": "/food/beer",
           "/food/beer/beer_style": [{
             "mid": styleId
+          }],
+          "/common/topic/image": [{
+            "id": null
           }]
         }
       ]);
