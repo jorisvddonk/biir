@@ -39,7 +39,11 @@ biir.factory('freebaseService', function($http, $q){
       return this.getByMQL([{
         "mid": null,
         "name": null,
-        "type": "/food/beer_style"
+        "type": "/food/beer_style",
+        "/food/beer_style/beers": {
+          "return": "count"
+        },
+        "sort": "-/food/beer_style/beers.count"
       }]);
     },
 

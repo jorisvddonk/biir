@@ -28,4 +28,12 @@ biir.controller('mainController', function mainController($scope, brewerydbServi
     }
   };
 
+  $scope.getCountBeers = function(style) {
+    if (style.hasOwnProperty("/food/beer_style/beers")) {
+      return style["/food/beer_style/beers"];
+    } else {
+      return null;
+    }
+  };
+
 });
